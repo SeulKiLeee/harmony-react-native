@@ -11,17 +11,14 @@
 import 'react-native-gesture-handler';
 
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import RootNavigator from './routes';
 
 const index = () => {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View>
-          <Text>Hello </Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <RootNavigator />
+    </NavigationContainer>
   );
 };
 
