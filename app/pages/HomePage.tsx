@@ -1,5 +1,5 @@
 import React from 'react';
-
+import MainPage from './Main';
 import {Text, View} from 'react-native';
 
 const HomePage = () => {
@@ -10,7 +10,7 @@ const HomePage = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text>Home Page </Text>
+      <MainPage />
     </View>
   );
 };
