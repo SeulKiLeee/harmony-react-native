@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './header';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomePage from './pages/HomePage';
@@ -35,11 +36,15 @@ const RootNavigator = () => {
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
       })}>
-      <MainScreenTab.Screen name="Home" component={HomePage} />
-      <MainScreenTab.Screen name="Puzzle" component={PuzzlePage} />
-      <MainScreenTab.Screen name="Profile" component={ProfilePage} />
+      <MainScreenTab.Screen name="Home" component={HomePage} options={{ headerLeft: () => <Header />, headerStyle: headerStyle, headerTitle: ''}} />
+      <MainScreenTab.Screen name="Puzzle" component={PuzzlePage} options={{ headerLeft: () => <Header />, headerStyle: headerStyle, headerTitle: ''}} />
+      <MainScreenTab.Screen name="Profile" component={ProfilePage} options={{ headerLeft: () => <Header />, headerStyle: headerStyle, headerTitle: ''}} />
     </MainScreenTab.Navigator>
   );
 };
 
+const headerStyle = {
+  height: 94,
+  backgroundColor: '#ffffff',
+};
 export default RootNavigator;

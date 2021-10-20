@@ -1,39 +1,39 @@
-import React, { useRef, useEffect, useState } from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View, Image, Platform, Animated, Easing } from 'react-native';
+import React from 'react';
+import {SafeAreaView, StyleSheet, Text, View, Image, Platform, Animated, Easing } from 'react-native';
 
 const BounceAnimation = () => {
-  // const BounceAnim = useRef(new Animated.Value(0)).current;
-  const [bounceValue, setBounceValue] = React.useState(new Animated.Value(0));
+  const [bounceValue, setBounceValue] = React.useState(new Animated.Value(50));
 
   React.useEffect(() => {
     playBounce()
   }, []);
 
   const playBounce = () => {
-   Animated.loop(
+  //  Animated.loop(
     Animated.timing(
       bounceValue,
       {
-        toValue:60,
+        toValue: 0,
         useNativeDriver:true,
-        duration: 3000,
-        easing:Easing.linear,
+        duration: 2500,
+        easing:Easing.bounce,
       }
-    )).start()
+    // )
+    ).start()
   }
 
   const bounce = bounceValue.interpolate({
-    inputRange: [0, 60],
-    outputRange: [60, 0]
+    inputRange: [0, 50],
+    outputRange: [50, 0]
   });
 
 
   return (
     <Animated.View style={{width: '100%',
-    height: 100,
+    padding: 12,
+    flex: 0.3,
     alignItems: 'center',
     transform: [{ translateY: bounce}],
-    
     }}>
        <Text style={mainStyles.animationText}>인생 한조각 맞추러 가기</Text>
           <Image
@@ -49,7 +49,7 @@ const MainPage = () => {
 
   return (
     <SafeAreaView style={mainStyles.backgroundView}>
-      <ScrollView>
+      <View style={mainStyles.containerWrap}>
         <View style={mainStyles.imageContainer}>
           <Image
           style={mainStyles.mainImage}
@@ -66,7 +66,7 @@ const MainPage = () => {
           </View>
         </View>
         <BounceAnimation />
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
@@ -78,12 +78,15 @@ const mainStyles = StyleSheet.create({
     backgroundColor: '#ffffff',
     flexDirection: 'column',
   },
+  containerWrap:{
+    flex:2,
+  },
   imageContainer:{
     width: '100%',
     paddingLeft: 18,
     paddingRight: 18,
     overflow: 'hidden',
-    flex: 0.5
+    flex: 1
   },
   mainImage:{
     width:'100%',
@@ -104,14 +107,13 @@ const mainStyles = StyleSheet.create({
   textContainer:{
     width: '100%',
     overflow: 'hidden',
-    marginTop: 20,
     paddingLeft: 25,
     paddingRight: 25,
     flex: 0.5,
     alignItems: 'flex-start',
   },
   titleText:{
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#171C2E'
   },
